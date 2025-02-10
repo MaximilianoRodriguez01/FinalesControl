@@ -24,22 +24,24 @@ pmp = zpk([-2 -1], [-8 -7], 1);
 
 c = zpk([-8 -7], [-2 -1 0], 1);
 
+% c = zpk([-2 -1], [-8 -7 0], 1);
+
 %% Pap
 
 figure();
 bode(pap,optionss);
 title("pap")
 
-%% wgc = 45.9
+%% wgc = 0.215
 
 pmpc = minreal(pmp*c);
 figure();
 bode(pmpc, optionss);
 title("pmpc sin compensar");
 
-% Encuentro 13 db
+% Encuentro 13 db en 0.215 y -33 db en 45 grados
 
-k = db2mag(33.3);
+k = db2mag(-13.3);
 
 pmpc = minreal(k*pmpc);
 
