@@ -54,13 +54,19 @@ P = zpk(ss(A, B, C, D));
 
 Avals = eig(P);
 
-C = zpk([-0.05861 -1.066], [0 -100], 1);
+C = zpk([-0.05861 -1.066], [0 -2], 1);
 
 %% segunda parte 
 
-% supongo wgc = 0.221
+% supongo wgc = 0.0229
 
-wgc = 0.221;
+wgc = 0.175;
+
+% Ts = 0.5;
+% 
+% wgc_inverso = Ts / (tan(deg2rad(5/2))*(4));
+% 
+% wgc = 1/wgc_inverso;
 
 Ts = (tan(deg2rad(5/2))*(4)) / wgc;
 
@@ -70,7 +76,7 @@ figure();
 bode(minreal(P*C), optionss);
 title("Bode De PC SIN COMPENSAR");
 
-k = db2mag(45);
+k = db2mag(9.05);
 
 figure();
 bode(minreal(k*P*C), optionss);
